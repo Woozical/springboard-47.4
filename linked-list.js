@@ -129,7 +129,27 @@ class LinkedList {
   /** removeAt(idx): return & remove item at idx, */
 
   removeAt(idx) {
-
+    if (idx >= this.length) throw new RangeError(`Attempted removal at ${idx}. LinkedList is length ${this.length}`);
+    switch (idx){
+      case 0:
+        // remove from head
+        return this.shift();
+      case (this.length-1):
+        // remove from tail
+        return this.pop();
+      default:
+        // remove from middle
+        let prev = null;
+        let current = this.head;
+        for (let i = 0; i < idx; i++){
+          prev = current;
+          current = current.next;
+        }
+        prev.next = current.next;
+        this.length--;
+        return current.val;
+    }
+    
   }
 
   /** average(): return an average of all values in the list */
