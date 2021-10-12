@@ -87,13 +87,23 @@ class LinkedList {
   /** getAt(idx): get val at idx. */
 
   getAt(idx) {
-
+    if (idx >= this.length) throw new RangeError
+    let current = this.head;
+    for (let i = 0; i < idx; i++){
+      current = current.next;
+    }
+    return current.val;
   }
 
   /** setAt(idx, val): set val at idx to val */
 
   setAt(idx, val) {
-
+    if (idx >= this.length) throw new RangeError
+    let current = this.head;
+    for (let i = 0; i < idx; i++){
+      current = current.next;
+    }
+    current.val = val;
   }
 
   /** insertAt(idx, val): add node w/val before idx. */
