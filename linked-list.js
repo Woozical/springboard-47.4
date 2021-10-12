@@ -45,7 +45,24 @@ class LinkedList {
   /** pop(): return & remove last item. */
 
   pop() {
-
+    // throw error if empty list
+    if (this.length < 1) throw new Error;
+    
+    // traverse list, keep track of previous
+    let current = this.head;
+    let prev = null;
+    while (current.next !== null){
+      prev = current;
+      current = current.next;
+    }
+    // set the new tail to be node previous to current tail
+    this.tail = prev;
+    // remove new tail's reference to the node that was the old tail
+    if (this.tail) this.tail.next = null;
+    // clean-up if tail was also the head
+    this.length--;
+    if (this.length === 0) this.head = null;
+    return current.val;
   }
 
   /** shift(): return & remove first item. */
