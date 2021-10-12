@@ -68,7 +68,20 @@ class LinkedList {
   /** shift(): return & remove first item. */
 
   shift() {
+    // throw error if empty list
+    if (this.length < 1) throw new Error;
 
+    // store the old head
+    const head = this.head;
+
+    // set new head
+    this.head = head.next;
+
+    // clean-up if old head was also the tail
+    this.length--;
+    if (this.length === 0) this.tail = null;
+
+    return head.val;
   }
 
   /** getAt(idx): get val at idx. */
