@@ -109,7 +109,21 @@ class LinkedList {
   /** insertAt(idx, val): add node w/val before idx. */
 
   insertAt(idx, val) {
-
+    if (idx > this.length) throw new RangeError(`Attempted insert at ${idx}. LinkedList is length ${this.length}`);
+    let prev = null;
+    let current = this.head;
+    for (let i = 0; i < idx; i++){
+      prev = current;
+      current = current.next;
+    }
+    if (idx === 0){
+      this.head = new Node(val, current);
+      if (!this.tail) this.tail = this.head
+    } else {
+      prev.next = new Node(val, current);
+      if (idx === this.length) this.tail = prev.next;
+    }
+    this.length++;
   }
 
   /** removeAt(idx): return & remove item at idx, */
